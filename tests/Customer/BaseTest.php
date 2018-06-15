@@ -7,6 +7,7 @@ use Railken\LaraOre\LegalEntity\LegalEntityManager;
 use Railken\LaraOre\LegalEntityContact\LegalEntityContactManager;
 use Railken\LaraOre\Taxonomy\TaxonomyManager;
 use Railken\LaraOre\Address\AddressManager;
+use Railken\LaraOre\Customer\CustomerManager;
 
 abstract class BaseTest extends \Orchestra\Testbench\TestCase
 {
@@ -91,6 +92,17 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         $bag->set('legal_entity_id', $this->newLegalEntity()->id);
 
         return $bag;
+    }
+
+    /**
+     * Retrieve correct Bag of parameters.
+     *
+     * @return Bag
+     */
+    public function newCustomer()
+    {
+        $cm = new CustomerManager();
+        return $cm->create($this->getParameters())->getResource();
     }
 
     /**

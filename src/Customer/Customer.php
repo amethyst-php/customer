@@ -48,4 +48,12 @@ class Customer extends Model implements EntityContract
     {
         return $this->belongsTo(LegalEntity::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function addresses()
+    {
+        return $this->belongsToMany(\Railken\LaraOre\Address\Address::class, Config::get('ore.customer-address.table'), 'customer_id', 'address_id');
+    }
 }

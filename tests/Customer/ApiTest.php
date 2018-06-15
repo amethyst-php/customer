@@ -29,4 +29,25 @@ class ApiTest extends BaseTest
         $this->signIn();
         $this->commonTest($this->getBaseUrl(), $parameters = $this->getParameters());
     }
+
+    public function testSuccessAddress()
+    {
+        $this->signIn();
+        $customer = $this->newCustomer();
+        $url = Config::get('ore.api.router.prefix').Config::get('ore.customer.router.prefix') . "/". $customer->id . "/addresses";
+
+        # GET /
+        $response = $this->get($url, []);
+        $this->assertOrPrint($response, 200);
+
+        $address = $this->newAddress();
+
+        # POST
+        $response = $this->post($url . "/" . $address->id, []);
+        $this->assertOrPrint($response, 200);
+
+        # DELETE
+        $response = $this->delete($url . "/" . $address->id, []);
+        $this->assertOrPrint($response, 200);
+    }
 }

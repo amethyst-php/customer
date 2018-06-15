@@ -16,12 +16,13 @@ class CustomerServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([__DIR__.'/../config/ore.customer.php' => config_path('ore.customer.php')], 'config');
+        $this->publishes([__DIR__.'/../config/ore.customer-address.php' => config_path('ore.customer-address.php')], 'config');
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadRoutes();
 
         config(['ore.user.permission.managers' => array_merge(Config::get('ore.user.permission.managers'), [
-            // \Railken\LaraOre\Customer\CustomerManager::class,
+            \Railken\LaraOre\Customer\CustomerManager::class,
         ])]);
     }
 
@@ -39,6 +40,7 @@ class CustomerServiceProvider extends ServiceProvider
         $this->app->register(\Railken\LaraOre\UserServiceProvider::class);
         $this->app->register(\Railken\LaraOre\LegalEntityServiceProvider::class);
         $this->mergeConfigFrom(__DIR__.'/../config/ore.customer.php', 'ore.customer');
+        $this->mergeConfigFrom(__DIR__.'/../config/ore.customer-address.php', 'ore.customer-address');
     }
 
     /**
@@ -56,6 +58,14 @@ class CustomerServiceProvider extends ServiceProvider
             $router->put('/{id}', ['uses' => 'CustomersController@update']);
             $router->delete('/{id}', ['uses' => 'CustomersController@remove']);
             $router->get('/{id}', ['uses' => 'CustomersController@show']);
+        });
+
+        Router::group(array_merge(Config::get('ore.customer-address.router'), [
+            'namespace' => 'Railken\LaraOre\Http\Controllers',
+        ]), function ($router) {
+            $router->get('/', ['uses' => 'CustomerAddressesController@index']);
+            $router->post('/{id}', ['uses' => 'CustomerAddressesController@create']);
+            $router->delete('/{id}', ['uses' => 'CustomerAddressesController@remove']);
         });
     }
 }
