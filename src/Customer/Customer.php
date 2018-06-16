@@ -4,9 +4,9 @@ namespace Railken\LaraOre\Customer;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Railken\Laravel\Manager\Contracts\EntityContract;
-use Railken\LaraOre\LegalEntity\LegalEntity;
 use Illuminate\Support\Facades\Config;
+use Railken\LaraOre\LegalEntity\LegalEntity;
+use Railken\Laravel\Manager\Contracts\EntityContract;
 
 class Customer extends Model implements EntityContract
 {
@@ -19,7 +19,7 @@ class Customer extends Model implements EntityContract
      */
     protected $fillable = [
         'name',
-        'notes'
+        'notes',
     ];
 
     /**

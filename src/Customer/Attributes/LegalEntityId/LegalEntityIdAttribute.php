@@ -5,7 +5,6 @@ namespace Railken\LaraOre\Customer\Attributes\LegalEntityId;
 use Railken\Laravel\Manager\Attributes\BelongsToAttribute;
 use Railken\Laravel\Manager\Contracts\EntityContract;
 use Railken\Laravel\Manager\Tokens;
-use Respect\Validation\Validator as v;
 
 class LegalEntityIdAttribute extends BelongsToAttribute
 {

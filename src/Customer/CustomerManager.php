@@ -2,10 +2,10 @@
 
 namespace Railken\LaraOre\Customer;
 
+use Illuminate\Support\Facades\Config;
 use Railken\Laravel\Manager\Contracts\AgentContract;
 use Railken\Laravel\Manager\ModelManager;
 use Railken\Laravel\Manager\Tokens;
-use Illuminate\Support\Facades\Config;
 
 class CustomerManager extends ModelManager
 {
@@ -15,7 +15,7 @@ class CustomerManager extends ModelManager
      * @var string
      */
     public $entity = Customer::class;
-    
+
     /**
      * List of all attributes.
      *
@@ -28,7 +28,7 @@ class CustomerManager extends ModelManager
         Attributes\UpdatedAt\UpdatedAtAttribute::class,
         Attributes\DeletedAt\DeletedAtAttribute::class,
         Attributes\Notes\NotesAttribute::class,
-        Attributes\LegalEntityId\LegalEntityIdAttribute::class
+        Attributes\LegalEntityId\LegalEntityIdAttribute::class,
     ];
 
     /**

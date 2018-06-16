@@ -13,7 +13,7 @@ return [
     'table' => 'ore_customer',
 
     'attributes' => [
-        
+
     ],
 
     'router' => [
