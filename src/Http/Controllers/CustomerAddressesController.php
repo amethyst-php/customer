@@ -3,15 +3,10 @@
 namespace Railken\LaraOre\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Railken\LaraOre\Customer\CustomerManager;
-use Railken\LaraOre\Customer\Customer;
-use Railken\LaraOre\Address\AddressManager;
-use Railken\LaraOre\Address\Address;
-use Railken\LaraOre\Api\Http\Controllers\Traits\ManyToMany as RestTraits;
-use Railken\LaraOre\Api\Http\Controllers\RestController;
 use Railken\Bag;
-use Illuminate\Support\Collection;
-use Railken\LaraOre\Http\Controllers\AddressesController;
+use Railken\LaraOre\Address\AddressManager;
+use Railken\LaraOre\Api\Http\Controllers\RestController;
+use Railken\LaraOre\Customer\CustomerManager;
 
 class CustomerAddressesController extends RestController
 {
@@ -21,10 +16,8 @@ class CustomerAddressesController extends RestController
 
     public $managers;
 
-
     /**
-     * Construct
-     *
+     * Construct.
      */
     public function __construct(CustomerManager $container, AddressManager $data)
     {
@@ -32,13 +25,13 @@ class CustomerAddressesController extends RestController
         $this->managers->container = $container;
         $this->managers->data = $data;
         $this->queryable = array_merge($this->queryable, collect((new AddressesController($this->managers->data))->queryable)->map(function ($v) {
-            return "".$v;
+            return ''.$v;
         })->toArray());
         parent::__construct();
     }
 
     /**
-     * Display resources
+     * Display resources.
      *
      * @param $container_id
      * @param Request $request
@@ -61,24 +54,25 @@ class CustomerAddressesController extends RestController
         }
 
         if ($container->addresses->count() > 0) {
-            $query[] = "id in (".$container->addresses->map(function ($v) {
+            $query[] = 'id in ('.$container->addresses->map(function ($v) {
                 return $v->id;
-            })->implode(",").")";
+            })->implode(',').')';
         } else {
-            $query[] = "id = 0";
+            $query[] = 'id = 0';
         }
 
-        $query = implode(" and ", $query);
+        $query = implode(' and ', $query);
 
         $request->request->add(['query' => $query]);
+
         return $pc->index($request);
     }
 
     /**
-     * Create a resource
+     * Create a resource.
      *
-     * @param string $container_id
-     * @param string $id
+     * @param string  $container_id
+     * @param string  $id
      * @param Request $request
      *
      * @return \Illuminate\Http\Response
@@ -98,10 +92,10 @@ class CustomerAddressesController extends RestController
     }
 
     /**
-     * Remove a resource
+     * Remove a resource.
      *
-     * @param string $container_id
-     * @param string $id
+     * @param string  $container_id
+     * @param string  $id
      * @param Request $request
      *
      * @return \Illuminate\Http\Response

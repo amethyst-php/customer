@@ -2,8 +2,8 @@
 
 namespace Railken\LaraOre\Tests\Customer;
 
-use Railken\LaraOre\Support\Testing\ApiTestableTrait;
 use Illuminate\Support\Facades\Config;
+use Railken\LaraOre\Support\Testing\ApiTestableTrait;
 
 class ApiTest extends BaseTest
 {
@@ -34,20 +34,20 @@ class ApiTest extends BaseTest
     {
         $this->signIn();
         $customer = $this->newCustomer();
-        $url = Config::get('ore.api.router.prefix').Config::get('ore.customer.router.prefix') . "/". $customer->id . "/addresses";
+        $url = Config::get('ore.api.router.prefix').Config::get('ore.customer.router.prefix').'/'.$customer->id.'/addresses';
 
-        # GET /
+        // GET /
         $response = $this->get($url, []);
         $this->assertOrPrint($response, 200);
 
         $address = $this->newAddress();
 
-        # POST
-        $response = $this->post($url . "/" . $address->id, []);
+        // POST
+        $response = $this->post($url.'/'.$address->id, []);
         $this->assertOrPrint($response, 200);
 
-        # DELETE
-        $response = $this->delete($url . "/" . $address->id, []);
+        // DELETE
+        $response = $this->delete($url.'/'.$address->id, []);
         $this->assertOrPrint($response, 200);
     }
 }
