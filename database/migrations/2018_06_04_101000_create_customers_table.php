@@ -18,7 +18,7 @@ class CreateCustomersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('notes')->nullable();
-            $table->integer('legal_entity_id')->unsigned();
+            $table->integer('legal_entity_id')->unsigned()->nullable();
             $table->foreign('legal_entity_id')->references('id')->on(Config::get('ore.legal-entity.table'));
             $table->timestamps();
             $table->softDeletes();
