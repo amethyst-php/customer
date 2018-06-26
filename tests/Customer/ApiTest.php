@@ -26,13 +26,11 @@ class ApiTest extends BaseTest
      */
     public function testSuccessCommon()
     {
-        $this->signIn();
         $this->commonTest($this->getBaseUrl(), $parameters = $this->getParameters());
     }
 
     public function testSuccessAddress()
     {
-        $this->signIn();
         $customer = $this->newCustomer();
         $url = Config::get('ore.api.router.prefix').Config::get('ore.customer.router.prefix').'/'.$customer->id.'/addresses';
 

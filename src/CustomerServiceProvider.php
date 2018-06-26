@@ -21,7 +21,7 @@ class CustomerServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadRoutes();
 
-        config(['ore.user.permission.managers' => array_merge(Config::get('ore.user.permission.managers'), [
+        config(['ore.permission.managers' => array_merge(Config::get('ore.permission.managers', []), [
             \Railken\LaraOre\Customer\CustomerManager::class,
         ])]);
     }
