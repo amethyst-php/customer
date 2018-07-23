@@ -51,11 +51,11 @@ class CustomerServiceProvider extends ServiceProvider
             Router::group('admin', Arr::get($config, 'router'), function ($router) use ($config) {
                 $controller = Arr::get($config, 'controller');
 
-                $router->get('/', ['uses' => 'CustomersController@index']);
-                $router->post('/', ['uses' => 'CustomersController@create']);
-                $router->put('/{id}', ['uses' => 'CustomersController@update']);
-                $router->delete('/{id}', ['uses' => 'CustomersController@remove']);
-                $router->get('/{id}', ['uses' => 'CustomersController@show']);
+                $router->get('/', ['uses' => $controller.'@index']);
+                $router->post('/', ['uses' => $controller.'@create']);
+                $router->put('/{id}', ['uses' => $controller.'@update']);
+                $router->delete('/{id}', ['uses' => $controller.'@remove']);
+                $router->get('/{id}', ['uses' => $controller.'@show']);
             });
         }
 
@@ -65,9 +65,9 @@ class CustomerServiceProvider extends ServiceProvider
             Router::group('admin', Arr::get($config, 'router'), function ($router) use ($config) {
                 $controller = Arr::get($config, 'controller');
 
-                $router->get('/', ['uses' => 'CustomerAddressesController@index']);
-                $router->post('/{id}', ['uses' => 'CustomerAddressesController@create']);
-                $router->delete('/{id}', ['uses' => 'CustomerAddressesController@remove']);
+                $router->get('/', ['uses' => $controller.'@index']);
+                $router->post('/{id}', ['uses' => $controller.'@create']);
+                $router->delete('/{id}', ['uses' => $controller.'@remove']);
             });
         }
     }

@@ -3,6 +3,10 @@
 namespace Railken\LaraOre\Tests\Customer;
 
 use Illuminate\Support\Facades\Config;
+use Railken\LaraOre\Address\AddressFaker;
+use Railken\LaraOre\Address\AddressManager;
+use Railken\LaraOre\Customer\CustomerFaker;
+use Railken\LaraOre\Customer\CustomerManager;
 use Railken\LaraOre\Support\Testing\ApiTestableTrait;
 
 class ApiTest extends BaseTest
@@ -24,19 +28,19 @@ class ApiTest extends BaseTest
      */
     public function testSuccessCommon()
     {
-        $this->commonTest($this->getBaseUrl(), $parameters = $this->getParameters());
+        $this->commonTest($this->getBaseUrl(), CustomerFaker::make()->parameters());
     }
 
     public function testSuccessAddress()
     {
-        $customer = $this->newCustomer();
-        $url = Config::get('ore.api.router.prefix').Config::get('ore.customer.router.prefix').'/'.$customer->id.'/addresses';
+        $customer = (new CustomerManager())->create(CustomerFaker::make()->parameters())->getResource();
+        $url = Config::get('ore.api.router.prefix').Config::get('ore.customer.http.admin.router.prefix').'/'.$customer->id.'/addresses';
 
         // GET /
         $response = $this->get($url, []);
         $this->assertOrPrint($response, 200);
 
-        $address = $this->newAddress();
+        $address = (new AddressManager())->create(AddressFaker::make()->parameters())->getResource();
 
         // POST
         $response = $this->post($url.'/'.$address->id, []);

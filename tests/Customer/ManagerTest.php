@@ -2,6 +2,7 @@
 
 namespace Railken\LaraOre\Tests\Customer;
 
+use Railken\LaraOre\Customer\CustomerFaker;
 use Railken\LaraOre\Customer\CustomerManager;
 use Railken\LaraOre\Support\Testing\ManagerTestableTrait;
 
@@ -21,6 +22,6 @@ class ManagerTest extends BaseTest
 
     public function testSuccessCommon()
     {
-        $this->commonTest($this->getManager(), $this->getParameters());
+        $this->commonTest($this->getManager(), CustomerFaker::make()->parameters());
     }
 }
