@@ -1,6 +1,6 @@
 <?php
 
-namespace Railken\LaraOre\Http\Controllers;
+namespace Railken\LaraOre\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Railken\Bag;

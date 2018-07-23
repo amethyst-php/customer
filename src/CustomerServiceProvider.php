@@ -2,6 +2,7 @@
 
 namespace Railken\LaraOre;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Railken\LaraOre\Api\Support\Router;
@@ -10,8 +11,6 @@ class CustomerServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
     public function boot()
     {
@@ -28,8 +27,6 @@ class CustomerServiceProvider extends ServiceProvider
 
     /**
      * Register any application services.
-     *
-     * @return void
      */
     public function register()
     {
@@ -45,27 +42,33 @@ class CustomerServiceProvider extends ServiceProvider
 
     /**
      * Load routes.
-     *
-     * @return void
      */
     public function loadRoutes()
     {
-        Router::group(array_merge(Config::get('ore.customer.router'), [
-            'namespace' => 'Railken\LaraOre\Http\Controllers',
-        ]), function ($router) {
-            $router->get('/', ['uses' => 'CustomersController@index']);
-            $router->post('/', ['uses' => 'CustomersController@create']);
-            $router->put('/{id}', ['uses' => 'CustomersController@update']);
-            $router->delete('/{id}', ['uses' => 'CustomersController@remove']);
-            $router->get('/{id}', ['uses' => 'CustomersController@show']);
-        });
+        $config = Config::get('ore.customer.http.admin');
 
-        Router::group(array_merge(Config::get('ore.customer-address.router'), [
-            'namespace' => 'Railken\LaraOre\Http\Controllers',
-        ]), function ($router) {
-            $router->get('/', ['uses' => 'CustomerAddressesController@index']);
-            $router->post('/{id}', ['uses' => 'CustomerAddressesController@create']);
-            $router->delete('/{id}', ['uses' => 'CustomerAddressesController@remove']);
-        });
+        if (Arr::get($config, 'enabled')) {
+            Router::group('admin', Arr::get($config, 'router'), function ($router) use ($config) {
+                $controller = Arr::get($config, 'controller');
+
+                $router->get('/', ['uses' => 'CustomersController@index']);
+                $router->post('/', ['uses' => 'CustomersController@create']);
+                $router->put('/{id}', ['uses' => 'CustomersController@update']);
+                $router->delete('/{id}', ['uses' => 'CustomersController@remove']);
+                $router->get('/{id}', ['uses' => 'CustomersController@show']);
+            });
+        }
+
+        $config = Config::get('ore.customer-address.http.admin');
+
+        if (Arr::get($config, 'enabled')) {
+            Router::group('admin', Arr::get($config, 'router'), function ($router) use ($config) {
+                $controller = Arr::get($config, 'controller');
+
+                $router->get('/', ['uses' => 'CustomerAddressesController@index']);
+                $router->post('/{id}', ['uses' => 'CustomerAddressesController@create']);
+                $router->delete('/{id}', ['uses' => 'CustomerAddressesController@remove']);
+            });
+        }
     }
 }

@@ -11,11 +11,20 @@ use Railken\LaraOre\Taxonomy\TaxonomyManager;
 
 abstract class BaseTest extends \Orchestra\Testbench\TestCase
 {
-    protected function getPackageProviders($app)
+    /**
+     * Setup the test environment.
+     */
+    public function setUp()
     {
-        return [
-            \Railken\LaraOre\CustomerServiceProvider::class,
-        ];
+        $dotenv = new \Dotenv\Dotenv(__DIR__.'/../..', '.env');
+        $dotenv->load();
+
+        parent::setUp();
+
+        $this->artisan('migrate:fresh');
+        // $this->artisan('vendor:publish', ['--provider' => 'Railken\LaraOre\CustomerServiceProvider', '--force' => true]);
+        $this->artisan('lara-ore:user:install');
+        $this->artisan('migrate');
     }
 
     /**
@@ -106,19 +115,10 @@ abstract class BaseTest extends \Orchestra\Testbench\TestCase
         return $cm->create($this->getParameters())->getResource();
     }
 
-    /**
-     * Setup the test environment.
-     */
-    public function setUp()
+    protected function getPackageProviders($app)
     {
-        $dotenv = new \Dotenv\Dotenv(__DIR__.'/../..', '.env');
-        $dotenv->load();
-
-        parent::setUp();
-
-        $this->artisan('migrate:fresh');
-        $this->artisan('vendor:publish', ['--provider' => 'Railken\LaraOre\CustomerServiceProvider', '--force' => true]);
-        $this->artisan('lara-ore:user:install');
-        $this->artisan('migrate');
+        return [
+            \Railken\LaraOre\CustomerServiceProvider::class,
+        ];
     }
 }
