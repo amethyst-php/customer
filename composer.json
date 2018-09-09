@@ -8,7 +8,6 @@
         "railken/laravel-manager": "^3.0.3",
         "railken/lara-ore-api": "dev-master",
         "railken/lara-ore-support": "dev-master",
-        "railken/lara-ore-user": "dev-master",
         "railken/lara-ore-taxonomy": "dev-master",
         "railken/lara-ore-address": "dev-master",
         "railken/lara-ore-template": "dev-master",

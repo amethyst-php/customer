@@ -34,7 +34,6 @@ class CustomerServiceProvider extends ServiceProvider
         $this->app->register(\Railken\LaraOre\ApiServiceProvider::class);
         $this->app->register(\Railken\LaraOre\AddressServiceProvider::class);
         $this->app->register(\Railken\LaraOre\TaxonomyServiceProvider::class);
-        $this->app->register(\Railken\LaraOre\UserServiceProvider::class);
         $this->app->register(\Railken\LaraOre\LegalEntityServiceProvider::class);
         $this->mergeConfigFrom(__DIR__.'/../config/ore.customer.php', 'ore.customer');
         $this->mergeConfigFrom(__DIR__.'/../config/ore.customer-address.php', 'ore.customer-address');
