@@ -3,11 +3,10 @@
 namespace Railken\LaraOre\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Config;
-use Railken\LaraOre\Api\Http\Controllers\RestController;
+use Railken\LaraOre\Api\Http\Controllers\RestConfigurableController;
 use Railken\LaraOre\Api\Http\Controllers\Traits as RestTraits;
-use Railken\LaraOre\Customer\CustomerManager;
 
-class CustomersController extends RestController
+class CustomersController extends RestConfigurableController
 {
     use RestTraits\RestIndexTrait;
     use RestTraits\RestCreateTrait;
@@ -15,6 +14,18 @@ class CustomersController extends RestController
     use RestTraits\RestShowTrait;
     use RestTraits\RestRemoveTrait;
 
+    /**
+     * The config path.
+     *
+     * @var string
+     */
+    public $config = 'ore.customer';
+
+    /**
+     * The attributes that are queryable.
+     *
+     * @var array
+     */
     public $queryable = [
         'id',
         'name',
@@ -24,31 +35,14 @@ class CustomersController extends RestController
         'updated_at',
     ];
 
+    /**
+     * The attributes that are fillable.
+     *
+     * @var array
+     */
     public $fillable = [
         'name',
         'notes',
         'legal_entity_id',
     ];
-
-    /**
-     * Construct.
-     */
-    public function __construct(CustomerManager $manager)
-    {
-        $this->queryable = array_merge($this->queryable, array_keys(Config::get('ore.customer.attributes')));
-        $this->fillable = array_merge($this->fillable, array_keys(Config::get('ore.customer.attributes')));
-        $this->manager = $manager;
-        $this->manager->setAgent($this->getUser());
-        parent::__construct();
-    }
-
-    /**
-     * Create a new instance for query.
-     *
-     * @return \Illuminate\Database\Query\Builder
-     */
-    public function getQuery()
-    {
-        return $this->manager->repository->getQuery();
-    }
 }
