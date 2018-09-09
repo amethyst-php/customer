@@ -27,7 +27,7 @@ return [
             'enabled'    => true,
             'controller' => Railken\LaraOre\Http\Controllers\Admin\CustomersController::class,
             'router'     => [
-                'prefix'      => '/admin/customers',
+                'prefix'      => '/customers',
             ],
         ],
     ],

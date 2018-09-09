@@ -27,7 +27,7 @@ return [
             'enabled'    => true,
             'controller' => Railken\LaraOre\Http\Controllers\Admin\CustomerAddressesController::class,
             'router'     => [
-                'prefix'      => '/admin/customers/{container_id}/addresses',
+                'prefix'      => '/customers/{container_id}/addresses',
             ],
         ],
     ],
