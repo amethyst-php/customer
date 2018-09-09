@@ -47,11 +47,20 @@ class CustomerManager extends ModelManager
      */
     public function __construct(AgentContract $agent = null)
     {
+        $this->entity = Config::get('ore.customer.entity');
         $this->attributes = array_merge($this->attributes, array_values(Config::get('ore.customer.attributes')));
-        $this->setRepository(new CustomerRepository($this));
-        $this->setSerializer(new CustomerSerializer($this));
-        $this->setValidator(new CustomerValidator($this));
-        $this->setAuthorizer(new CustomerAuthorizer($this));
+
+        $classRepository = Config::get('ore.customer.repository');
+        $this->setRepository(new $classRepository($this));
+
+        $classSerializer = Config::get('ore.customer.serializer');
+        $this->setSerializer(new $classSerializer($this));
+
+        $classAuthorizer = Config::get('ore.customer.authorizer');
+        $this->setAuthorizer(new $classAuthorizer($this));
+
+        $classValidator = Config::get('ore.customer.validator');
+        $this->setValidator(new $classValidator($this));
 
         parent::__construct($agent);
     }

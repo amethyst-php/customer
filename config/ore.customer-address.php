@@ -11,9 +11,6 @@ return [
     */
     'table' => 'ore_customers_addresses',
 
-    'attributes' => [
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Http configuration
