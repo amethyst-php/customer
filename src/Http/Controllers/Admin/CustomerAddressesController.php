@@ -24,7 +24,7 @@ class CustomerAddressesController extends RestController
         $this->managers = new Bag();
         $this->managers->container = $container;
         $this->managers->data = $data;
-        $this->queryable = array_merge($this->queryable, collect((new AddressesController($this->managers->data))->queryable)->map(function ($v) {
+        $this->queryable = array_merge($this->queryable, collect((new AddressesController())->queryable)->map(function ($v) {
             return ''.$v;
         })->toArray());
         parent::__construct();
@@ -33,10 +33,10 @@ class CustomerAddressesController extends RestController
     /**
      * Display resources.
      *
-     * @param $container_id
+     * @param mixed   $container_id
      * @param Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index($container_id, Request $request)
     {
@@ -46,7 +46,7 @@ class CustomerAddressesController extends RestController
             return $this->not_found();
         }
 
-        $pc = new AddressesController($this->managers->data);
+        $pc = new AddressesController();
         $query = [];
 
         if ($request->input('query')) {
@@ -75,18 +75,23 @@ class CustomerAddressesController extends RestController
      * @param string  $id
      * @param Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create($container_id, $id, Request $request)
     {
+        /** @var \Railken\laraOre\Customer\Customer */
         $container = (new CustomerManager())->repository->findOneBy(['id' => $container_id]);
+
+        /** @var \Railken\laraOre\Address\Address */
         $resource = $this->managers->data->repository->findOneBy(['id' => $id]);
 
-        if (!$container || !$resource) {
+        if ($container == null || $resource == null) {
             return $this->not_found();
         }
 
-        !$container->addresses->contains($resource) && $container->addresses()->attach($resource);
+        if (!$container->addresses->contains($resource)) {
+            $container->addresses()->attach($resource);
+        }
 
         return $this->success(['message' => 'ok']);
     }
@@ -98,14 +103,17 @@ class CustomerAddressesController extends RestController
      * @param string  $id
      * @param Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function remove($container_id, $id, Request $request)
     {
-        $container = $this->managers->container->repository->findOneBy(['id' => $container_id]);
+        /** @var \Railken\laraOre\Customer\Customer */
+        $container = (new CustomerManager())->repository->findOneBy(['id' => $container_id]);
+
+        /** @var \Railken\laraOre\Address\Address */
         $resource = $this->managers->data->repository->findOneBy(['id' => $id]);
 
-        if (!$container || !$resource) {
+        if ($container == null || $resource == null) {
             return $this->not_found();
         }
 
