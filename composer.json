@@ -1,38 +1,33 @@
 {
-    "name": "railken/lara-ore-customer",
-    "keywords": ["laravel", "lara-ore"],
+    "name": "railken/amethyst-customer",
+    "keywords": ["laravel", "amethyst", "amethyst-customer", "customer"],
     "license": "MIT",
     "require": {
         "php": ">=7.1",
-        "railken/bag": "^1.2",
-        "railken/laravel-manager": "^3.0.3",
-        "railken/lara-ore-api": "dev-master",
-        "railken/lara-ore-support": "dev-master",
-        "railken/lara-ore-taxonomy": "dev-master",
-        "railken/lara-ore-address": "dev-master",
-        "railken/lara-ore-template": "dev-master",
-        "railken/lara-ore-legal-entity": "dev-master",
-        "league/iso3166": "^2.1",
-        "dannyvankooten/vat.php": "^1.1"
+        "railken/amethyst-common": "0.1.*",
+        "railken/amethyst-address": "0.1.*",
+        "railken/amethyst-legal-entity": "0.1.*"
     },
     "require-dev": {
         "phpstan/phpstan": "^0.10",
         "phpunit/phpunit": "~7.0",
-        "orchestra/testbench": "~3.6",
+        "orchestra/testbench": "3.6.*",
         "friendsofphp/php-cs-fixer": "^2.8.1"
     },
     "autoload": {
         "psr-4" : {
-            "Railken\\LaraOre\\" : "src/"
+            "Railken\\Amethyst\\" : "src/"
         }
     },
     "autoload-dev": {
-        "psr-4": { "Railken\\LaraOre\\Tests\\": "tests/" }
+        "psr-4": { 
+            "Railken\\Amethyst\\Tests\\": "tests/" 
+        }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Railken\\LaraOre\\CustomerServiceProvider"
+                "Railken\\Amethyst\\Providers\\CustomerServiceProvider"
             ]
         }
     }

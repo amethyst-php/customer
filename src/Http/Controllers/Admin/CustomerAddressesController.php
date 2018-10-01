@@ -1,12 +1,12 @@
 <?php
 
-namespace Railken\LaraOre\Http\Controllers\Admin;
+namespace Railken\Amethyst\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Railken\Amethyst\Api\Http\Controllers\RestController;
+use Railken\Amethyst\Managers\AddressManager;
+use Railken\Amethyst\Managers\CustomerManager;
 use Railken\Bag;
-use Railken\LaraOre\Address\AddressManager;
-use Railken\LaraOre\Api\Http\Controllers\RestController;
-use Railken\LaraOre\Customer\CustomerManager;
 
 class CustomerAddressesController extends RestController
 {
@@ -77,12 +77,12 @@ class CustomerAddressesController extends RestController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create($container_id, $id, Request $request)
+    public function attach($container_id, $id, Request $request)
     {
-        /** @var \Railken\laraOre\Customer\Customer */
+        /** @var \Railken\Amethyst\Models\Customer */
         $container = (new CustomerManager())->repository->findOneBy(['id' => $container_id]);
 
-        /** @var \Railken\laraOre\Address\Address */
+        /** @var \Railken\Amethyst\Models\Address */
         $resource = $this->managers->data->repository->findOneBy(['id' => $id]);
 
         if ($container == null || $resource == null) {
@@ -105,12 +105,12 @@ class CustomerAddressesController extends RestController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function remove($container_id, $id, Request $request)
+    public function detach($container_id, $id, Request $request)
     {
-        /** @var \Railken\laraOre\Customer\Customer */
+        /** @var \Railken\Amethyst\Models\Customer */
         $container = (new CustomerManager())->repository->findOneBy(['id' => $container_id]);
 
-        /** @var \Railken\laraOre\Address\Address */
+        /** @var \Railken\Amethyst\Models\Address */
         $resource = $this->managers->data->repository->findOneBy(['id' => $id]);
 
         if ($container == null || $resource == null) {
