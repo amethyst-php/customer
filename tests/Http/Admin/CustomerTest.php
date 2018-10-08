@@ -43,8 +43,6 @@ class CustomerTest extends BaseTest
         $customer = (new CustomerManager())->create(CustomerFaker::make()->parameters())->getResource();
         $url = $this->getResourceUrl().'/'.$customer->id.'/addresses';
 
-        print_r($url);
-
         $this->callAndTest('GET', $url, [], 200);
 
         $address = (new AddressManager())->create(AddressFaker::make()->parameters())->getResource();
