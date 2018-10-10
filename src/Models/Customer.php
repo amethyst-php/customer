@@ -5,7 +5,6 @@ namespace Railken\Amethyst\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Config;
-use Railken\Amethyst\Schemas\CustomerSchema;
 use Railken\Lem\Contracts\EntityContract;
 
 class Customer extends Model implements EntityContract
@@ -21,7 +20,9 @@ class Customer extends Model implements EntityContract
     {
         parent::__construct($attributes);
         $this->table = Config::get('amethyst.customer.managers.customer.table');
-        $this->fillable = (new CustomerSchema())->getNameFillableAttributes();
+
+        $classSchema = Config::get('amethyst.customer.managers.customer.schema');
+        $this->fillable = (new $classSchema())->getNameFillableAttributes();
     }
 
     /**
