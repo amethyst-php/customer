@@ -2,7 +2,6 @@
 
 namespace Railken\Amethyst\Tests\Http\Admin;
 
-use Illuminate\Support\Facades\Config;
 use Railken\Amethyst\Api\Support\Testing\TestableBaseTrait;
 use Railken\Amethyst\Fakers\AddressFaker;
 use Railken\Amethyst\Fakers\CustomerFaker;
@@ -29,11 +28,11 @@ class CustomerTest extends BaseTest
     protected $group = 'admin';
 
     /**
-     * Base path config.
+     * Route name.
      *
      * @var string
      */
-    protected $config = 'amethyst.customer.http.admin.customer';
+    protected $route = 'admin.customer';
 
     /**
      * Address tests.
@@ -41,13 +40,12 @@ class CustomerTest extends BaseTest
     public function testSuccessAddress()
     {
         $customer = (new CustomerManager())->create(CustomerFaker::make()->parameters())->getResource();
-        $url = $this->getResourceUrl().'/'.$customer->id.'/addresses';
 
-        $this->callAndTest('GET', $url, [], 200);
+        $this->callAndTest('GET', route('admin.customer-address.index', ['container_id' => $customer->id]), [], 200);
 
         $address = (new AddressManager())->create(AddressFaker::make()->parameters())->getResource();
 
-        $this->callAndTest('POST', $url.'/'.$address->id, [], 200);
-        $this->callAndTest('DELETE', $url.'/'.$address->id, [], 200);
+        $this->callAndTest('POST', route('admin.customer-address.attach', ['container_id' => $customer->id, 'id' => $address->id]), [], 200);
+        $this->callAndTest('DELETE', route('admin.customer-address.detach', ['container_id' => $customer->id, 'id' => $address->id]), [], 200);
     }
 }

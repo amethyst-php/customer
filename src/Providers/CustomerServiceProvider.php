@@ -32,9 +32,9 @@ class CustomerServiceProvider extends CommonServiceProvider
             Router::group('admin', Arr::get($config, 'router'), function ($router) use ($config) {
                 $controller = Arr::get($config, 'controller');
 
-                $router->get('/', ['uses' => $controller.'@index']);
-                $router->post('/{id}', ['uses' => $controller.'@attach']);
-                $router->delete('/{id}', ['uses' => $controller.'@detach']);
+                $router->get('/', ['as' => 'index', 'uses' => $controller.'@index']);
+                $router->post('/{id}', ['as' => 'attach', 'uses' => $controller.'@attach']);
+                $router->delete('/{id}', ['as' => 'detach', 'uses' => $controller.'@detach']);
             });
         }
     }

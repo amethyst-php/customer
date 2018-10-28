@@ -5,24 +5,22 @@ namespace Railken\Amethyst\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Config;
+use Railken\Amethyst\Common\ConfigurableModel;
 use Railken\Lem\Contracts\EntityContract;
 
 class Customer extends Model implements EntityContract
 {
-    use SoftDeletes;
+    use SoftDeletes, ConfigurableModel;
 
     /**
-     * Creates a new instance of the model.
+     * Create a new Eloquent model instance.
      *
      * @param array $attributes
      */
     public function __construct(array $attributes = [])
     {
+        $this->ini('amethyst.customer.data.customer');
         parent::__construct($attributes);
-        $this->table = Config::get('amethyst.customer.managers.customer.table');
-
-        $classSchema = Config::get('amethyst.customer.managers.customer.schema');
-        $this->fillable = (new $classSchema())->getNameFillableAttributes();
     }
 
     /**
@@ -38,6 +36,6 @@ class Customer extends Model implements EntityContract
      */
     public function addresses()
     {
-        return $this->belongsToMany(Address::class, Config::get('amethyst.customer.managers.customer-address.table'), 'customer_id', 'address_id');
+        return $this->belongsToMany(Address::class, Config::get('amethyst.customer.data.customer-address.table'), 'customer_id', 'address_id');
     }
 }
