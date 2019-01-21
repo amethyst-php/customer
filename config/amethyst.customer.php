@@ -38,19 +38,19 @@ return [
     'http' => [
         'admin' => [
             'customer' => [
-                'enabled'     => true,
-                'controller'  => Railken\Amethyst\Http\Controllers\Admin\CustomersController::class,
-                'router'      => [
-                    'as'        => 'customer.',
-                    'prefix'    => '/customers',
+                'enabled'    => true,
+                'controller' => Railken\Amethyst\Http\Controllers\Admin\CustomersController::class,
+                'router'     => [
+                    'as'     => 'customer.',
+                    'prefix' => '/customers',
                 ],
             ],
             'customer-address' => [
-                'enabled'     => true,
-                'controller'  => Railken\Amethyst\Http\Controllers\Admin\CustomerAddressesController::class,
-                'router'      => [
-                    'as'        => 'customer-address.',
-                    'prefix'    => '/customers/{container_id}/addresses',
+                'enabled'    => true,
+                'controller' => Railken\Amethyst\Http\Controllers\Admin\CustomerAddressesController::class,
+                'router'     => [
+                    'as'     => 'customer-address.',
+                    'prefix' => '/customers/{container_id}/addresses',
                 ],
             ],
         ],
