@@ -17,6 +17,7 @@ class CustomerFaker extends Faker
 
         $bag = new Bag();
         $bag->set('name', $faker->name);
+        $bag->set('code', $faker->name);
         $bag->set('notes', $faker->text);
         $bag->set('legal_entity', LegalEntityFaker::make()->parameters()->toArray());
 
