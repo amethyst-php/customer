@@ -15,7 +15,7 @@ class CreateCustomersTable extends Migration
         Schema::create(Config::get('amethyst.customer.data.customer.table'), function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->text('notes')->nullable();
             $table->integer('legal_entity_id')->unsigned()->nullable();
             $table->foreign('legal_entity_id')->references('id')->on(Config::get('amethyst.legal-entity.data.legal-entity.table'));
