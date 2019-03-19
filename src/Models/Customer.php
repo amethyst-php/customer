@@ -3,6 +3,9 @@
 namespace Railken\Amethyst\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Config;
 use Railken\Amethyst\Common\ConfigurableModel;
@@ -26,7 +29,7 @@ class Customer extends Model implements EntityContract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function legal_entity()
+    public function legal_entity(): BelongsTo
     {
         return $this->belongsTo(LegalEntity::class);
     }
@@ -34,7 +37,7 @@ class Customer extends Model implements EntityContract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function addresses()
+    public function addresses(): BelongsToMany
     {
         return $this->belongsToMany(Address::class, Config::get('amethyst.customer.data.customer-address.table'), 'customer_id', 'address_id');
     }
