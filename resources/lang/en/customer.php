@@ -9,4 +9,4 @@ return [
             'description' => 'Legal Entity'
         ]
     ]
-]
+];
