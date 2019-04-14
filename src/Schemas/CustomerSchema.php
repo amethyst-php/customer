@@ -20,7 +20,6 @@ class CustomerSchema extends Schema
             Attributes\TextAttribute::make('name')
                 ->setRequired(true),
             Attributes\TextAttribute::make('code'),
-            Attributes\LongTextAttribute::make('notes'),
             Attributes\BelongsToAttribute::make('legal_entity_id')
                 ->setRelationName('legal_entity')
                 ->setRelationManager(LegalEntityManager::class),

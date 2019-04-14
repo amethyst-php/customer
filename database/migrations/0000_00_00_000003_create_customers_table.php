@@ -16,7 +16,6 @@ class CreateCustomersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('code')->nullable();
-            $table->text('notes')->nullable();
             $table->integer('legal_entity_id')->unsigned()->nullable();
             $table->foreign('legal_entity_id')->references('id')->on(Config::get('amethyst.legal-entity.data.legal-entity.table'));
             $table->timestamps();
