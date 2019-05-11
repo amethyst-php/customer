@@ -30,7 +30,7 @@ class Customer extends Model implements EntityContract
      */
     public function legal_entity(): BelongsTo
     {
-        return $this->belongsTo(LegalEntity::class);
+        return $this->belongsTo(config('amethyst.legal-entity.data.legal-entity.model'));
     }
 
     /**
@@ -38,6 +38,6 @@ class Customer extends Model implements EntityContract
      */
     public function addresses(): BelongsToMany
     {
-        return $this->belongsToMany(Address::class, Config::get('amethyst.customer.data.customer-address.table'), 'customer_id', 'address_id');
+        return $this->belongsToMany(config('amethyst.address.data.address.model'), Config::get('amethyst.customer.data.customer-address.table'), 'customer_id', 'address_id');
     }
 }
