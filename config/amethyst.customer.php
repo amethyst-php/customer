@@ -13,14 +13,14 @@ return [
         'customer' => [
             'table'      => 'amethyst_customers',
             'comment'    => 'Customer',
-            'model'      => Railken\Amethyst\Models\Customer::class,
-            'schema'     => Railken\Amethyst\Schemas\CustomerSchema::class,
-            'repository' => Railken\Amethyst\Repositories\CustomerRepository::class,
-            'serializer' => Railken\Amethyst\Serializers\CustomerSerializer::class,
-            'validator'  => Railken\Amethyst\Validators\CustomerValidator::class,
-            'authorizer' => Railken\Amethyst\Authorizers\CustomerAuthorizer::class,
-            'faker'      => Railken\Amethyst\Fakers\CustomerFaker::class,
-            'manager'    => Railken\Amethyst\Managers\CustomerManager::class,
+            'model'      => Amethyst\Models\Customer::class,
+            'schema'     => Amethyst\Schemas\CustomerSchema::class,
+            'repository' => Amethyst\Repositories\CustomerRepository::class,
+            'serializer' => Amethyst\Serializers\CustomerSerializer::class,
+            'validator'  => Amethyst\Validators\CustomerValidator::class,
+            'authorizer' => Amethyst\Authorizers\CustomerAuthorizer::class,
+            'faker'      => Amethyst\Fakers\CustomerFaker::class,
+            'manager'    => Amethyst\Managers\CustomerManager::class,
         ],
         'customer-address' => [
             'table' => 'amethyst_customer_addresses',
@@ -39,7 +39,7 @@ return [
         'admin' => [
             'customer' => [
                 'enabled'    => true,
-                'controller' => Railken\Amethyst\Http\Controllers\Admin\CustomersController::class,
+                'controller' => Amethyst\Http\Controllers\Admin\CustomersController::class,
                 'router'     => [
                     'as'     => 'customer.',
                     'prefix' => '/customers',
@@ -47,7 +47,7 @@ return [
             ],
             'customer-address' => [
                 'enabled'    => true,
-                'controller' => Railken\Amethyst\Http\Controllers\Admin\CustomerAddressesController::class,
+                'controller' => Amethyst\Http\Controllers\Admin\CustomerAddressesController::class,
                 'router'     => [
                     'as'     => 'customer-address.',
                     'prefix' => '/customers/{container_id}/addresses',

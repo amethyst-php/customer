@@ -1,11 +1,11 @@
 <?php
 
-namespace Railken\Amethyst\Providers;
+namespace Amethyst\Providers;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
-use Railken\Amethyst\Api\Support\Router;
-use Railken\Amethyst\Common\CommonServiceProvider;
+use Amethyst\Api\Support\Router;
+use Amethyst\Common\CommonServiceProvider;
 
 class CustomerServiceProvider extends CommonServiceProvider
 {
@@ -17,8 +17,8 @@ class CustomerServiceProvider extends CommonServiceProvider
         parent::register();
 
         $this->loadExtraRoutes();
-        $this->app->register(\Railken\Amethyst\Providers\AddressServiceProvider::class);
-        $this->app->register(\Railken\Amethyst\Providers\LegalEntityServiceProvider::class);
+        $this->app->register(\Amethyst\Providers\AddressServiceProvider::class);
+        $this->app->register(\Amethyst\Providers\LegalEntityServiceProvider::class);
     }
 
     /**

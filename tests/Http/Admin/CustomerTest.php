@@ -1,13 +1,13 @@
 <?php
 
-namespace Railken\Amethyst\Tests\Http\Admin;
+namespace Amethyst\Tests\Http\Admin;
 
-use Railken\Amethyst\Api\Support\Testing\TestableBaseTrait;
-use Railken\Amethyst\Fakers\AddressFaker;
-use Railken\Amethyst\Fakers\CustomerFaker;
-use Railken\Amethyst\Managers\AddressManager;
-use Railken\Amethyst\Managers\CustomerManager;
-use Railken\Amethyst\Tests\BaseTest;
+use Amethyst\Api\Support\Testing\TestableBaseTrait;
+use Amethyst\Fakers\AddressFaker;
+use Amethyst\Fakers\CustomerFaker;
+use Amethyst\Managers\AddressManager;
+use Amethyst\Managers\CustomerManager;
+use Amethyst\Tests\BaseTest;
 
 class CustomerTest extends BaseTest
 {
