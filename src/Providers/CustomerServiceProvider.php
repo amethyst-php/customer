@@ -2,10 +2,10 @@
 
 namespace Amethyst\Providers;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Config;
 use Amethyst\Api\Support\Router;
 use Amethyst\Common\CommonServiceProvider;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Config;
 
 class CustomerServiceProvider extends CommonServiceProvider
 {
