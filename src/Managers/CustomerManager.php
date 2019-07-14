@@ -6,12 +6,12 @@ use Amethyst\Common\ConfigurableManager;
 use Railken\Lem\Manager;
 
 /**
- * @method \Amethyst\Models\Customer newEntity()
- * @method \Amethyst\Schemas\CustomerSchema getSchema()
+ * @method \Amethyst\Models\Customer                 newEntity()
+ * @method \Amethyst\Schemas\CustomerSchema          getSchema()
  * @method \Amethyst\Repositories\CustomerRepository getRepository()
- * @method \Amethyst\Serializers\CustomerSerializer getSerializer()
- * @method \Amethyst\Validators\CustomerValidator getValidator()
- * @method \Amethyst\Authorizers\CustomerAuthorizer getAuthorizer()
+ * @method \Amethyst\Serializers\CustomerSerializer  getSerializer()
+ * @method \Amethyst\Validators\CustomerValidator    getValidator()
+ * @method \Amethyst\Authorizers\CustomerAuthorizer  getAuthorizer()
  */
 class CustomerManager extends Manager
 {
