@@ -27,7 +27,7 @@ class CreateCustomersTable extends Migration
             $table->foreign('customer_id')->references('id')->on(Config::get('amethyst.customer.data.customer.table'))->onDelete('cascade');
             $table->integer('address_id')->unsigned();
             $table->foreign('address_id')->references('id')->on(Config::get('amethyst.address.data.address.table'))->onDelete('cascade');
-            $table->unique(['customer_id', 'address_id']);
+            $table->index(['customer_id', 'address_id']);
         });
     }
 
