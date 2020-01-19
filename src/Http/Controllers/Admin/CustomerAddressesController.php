@@ -2,8 +2,8 @@
 
 namespace Amethyst\Http\Controllers\Admin;
 
-use Amethyst\Api\Http\Controllers\RestManagerController;
-use Amethyst\Api\Http\Controllers\Traits;
+use Amethyst\Core\Http\Controllers\RestManagerController;
+use Amethyst\Core\Http\Controllers\Traits;
 use Amethyst\Managers\AddressManager;
 use Amethyst\Managers\CustomerManager;
 use Railken\Lem\Contracts\EntityContract;
