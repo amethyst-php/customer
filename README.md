@@ -1,6 +1,6 @@
 # amethyst-customer
 
-[![Build Status](https://travis-ci.org/amethyst-php/customer.svg?branch=master)](https://travis-ci.org/amethyst-php/customer)
+[![Action Status](https://github.com/amethyst-php/customer/workflows/test/badge.svg)](https://github.com/amethyst-php/customer/actions)
 
 [Amethyst](https://github.com/amethyst-php/amethyst) package.
 
