@@ -22,37 +22,5 @@ return [
             'faker'      => Amethyst\Fakers\CustomerFaker::class,
             'manager'    => Amethyst\Managers\CustomerManager::class,
         ],
-        'customer-address' => [
-            'table' => 'amethyst_customer_addresses',
-        ],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Http configuration
-    |--------------------------------------------------------------------------
-    |
-    | Here you may configure the routes
-    |
-    */
-    'http' => [
-        'admin' => [
-            'customer' => [
-                'enabled'    => true,
-                'controller' => Amethyst\Http\Controllers\Admin\CustomersController::class,
-                'router'     => [
-                    'as'     => 'customer.',
-                    'prefix' => '/customers',
-                ],
-            ],
-            'customer-address' => [
-                'enabled'    => true,
-                'controller' => Amethyst\Http\Controllers\Admin\CustomerAddressesController::class,
-                'router'     => [
-                    'as'     => 'customer-address.',
-                    'prefix' => '/customers/{container_id}/addresses',
-                ],
-            ],
-        ],
     ],
 ];
