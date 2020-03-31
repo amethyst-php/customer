@@ -21,14 +21,6 @@ class CreateCustomersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-
-        Schema::create(Config::get('amethyst.customer.data.customer-address.table'), function (Blueprint $table) {
-            $table->integer('customer_id')->unsigned();
-            $table->foreign('customer_id')->references('id')->on(Config::get('amethyst.customer.data.customer.table'))->onDelete('cascade');
-            $table->integer('address_id')->unsigned();
-            $table->foreign('address_id')->references('id')->on(Config::get('amethyst.address.data.address.table'))->onDelete('cascade');
-            $table->index(['customer_id', 'address_id']);
-        });
     }
 
     /**
@@ -37,6 +29,5 @@ class CreateCustomersTable extends Migration
     public function down()
     {
         Schema::dropIfExists(Config::get('amethyst.customer.data.customer.table'));
-        Schema::dropIfExists(Config::get('amethyst.customer.data.customer-address.table'));
     }
 }
